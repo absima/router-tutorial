@@ -1,8 +1,9 @@
 // import { matchSorter } from "match-sorter";
 // import sortBy from "sort-by";
+const api_url = import.meta.env.VITE_API_URL;
 
 const createContact = async () => {
-  const response = await fetch('http://localhost:3000/contact', {
+  const response = await fetch(`${api_url}/contact`, {
     method: 'POST',
   });
   if (response.ok) {
@@ -13,7 +14,7 @@ const createContact = async () => {
 };
 
 const getContact = async (id) => {
-  const response = await fetch(`http://localhost:3000/contact/${id}`);
+  const response = await fetch(`${api_url}/contact/${id}`);
   if (response.ok) {
     return await response.json();
   } else {
@@ -22,7 +23,7 @@ const getContact = async (id) => {
 };
 
 const getContacts = async (q) => {
-  const response = await fetch(`http://localhost:3000/contact`);
+  const response = await fetch(`${api_url}/contact`);
   if (response.ok) {
     let contacts = await response.json();
     if (q) {
@@ -31,7 +32,7 @@ const getContacts = async (q) => {
         return (
           contact.first.toLowerCase().startsWith(q.toLowerCase()) ||
           contact.last.toLowerCase().startsWith(q.toLowerCase())
-        );  
+        );
       });
     }
     return contacts; //.sort(sortBy("last", "createdAt"));
@@ -43,7 +44,7 @@ const getContacts = async (q) => {
 // update contact using id and modified contact object
 
 const updateContact = async (id, modified) => {
-  const response = await fetch(`http://localhost:3000/contact/${id}`, {
+  const response = await fetch(`${api_url}/contact/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -58,7 +59,7 @@ const updateContact = async (id, modified) => {
 };
 
 const deleteContact = async (id) => {
-  const response = await fetch(`http://localhost:3000/contact/${id}`, {
+  const response = await fetch(`${api_url}/contact/${id}`, {
     method: 'DELETE',
   });
   if (!response.ok) {
