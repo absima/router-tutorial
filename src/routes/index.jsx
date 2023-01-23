@@ -1,13 +1,8 @@
 export default function Index() {
   return (
     <p id="zero-state">
-      This is a demo for React Router.
-      <br />
-      Check out{" "}
-      <a href="https://reactrouter.com/">
-        the docs at reactrouter.com
-      </a>
-      .
+      <span>There are no contacts yet.</span>
+      <span>Click the "New" button to add one.</span>
     </p>
   );
 }
